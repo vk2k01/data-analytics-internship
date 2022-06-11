@@ -1,0 +1,34 @@
+/*change name of table to deliveries */
+ALTER TABLE ipl_ball
+RENAME TO deliveries;
+
+/*change name of table to matches */
+ALTER TABLE ipl_matches
+RENAME TO matches;
+
+/*Select the top 20 rows of the deliveries table.*/
+select * from deliveries LIMIT 20;
+
+/*Select the top 20 rows of the matches table.*/
+select * from matches LIMIT 20;
+
+/*Fetch data of all the matches played on 2nd May 2013.*/
+select * from matches where date='02-05-2013';
+
+/*Fetch data of all the matches where the margin of victory is more than 100 runs.*/
+select * from matches where result_margin>=100;
+
+/*Fetch data of all the matches where the final scores of both teams tied and order it in descending order of the date.*/
+select * from matches where result='tie' order by id desc;
+
+/*Get the count of cities that have hosted an IPL match.*/
+SELECT COUNT( DISTINCT city) as cities
+FROM matches;
+
+/*Get the cities that have hosted an IPL match.*/
+SELECT DISTINCT city as cities
+FROM matches;
+
+/*to explore concept of join*/
+SELECT team1, team2,date, winner,COUNT(total_runs) as total_runs
+FROM matches natural join deliveries Group by id;
